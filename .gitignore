@@ -1,0 +1,4 @@
+.coursier/
+.idea/
+.idea_modules/
+out/
