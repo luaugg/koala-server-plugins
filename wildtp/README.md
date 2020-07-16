@@ -1,11 +1,11 @@
 # WildernessTeleport
-[Minecraft](https://minecraft.net/) plugin,
-originally targeted to [PaperMC](https://papermc.io/) 1.16.1. It has one command - `/wild` -
-which teleports the player to a random location in any of the three dimensions.
+Allows the player to teleport to a random location in any of the three dimensions,
+using the `/wild` command.
 
 # Configuration and Documentation
 WildernessTeleport is highly configurable. Here are the configuration options with
 comments explaining what they do:
+
 ```yaml
 # The minimum amount of time, in milliseconds, a player must wait in between command incovations.
 # Defaults to: 10 minutes.
@@ -34,12 +34,4 @@ netherTeleportAllowed: false
 endTeleportAllowed: false
 ```
 
-# Development Details
-WildernessTeleport is written in [Scala](https://scala-lang.org) and uses the [Mill](https://github.com/lihaoyi/mill) build tool.
-It targets [PaperMC](https://papermc.io) 1.16.1. Older versions of [Minecraft](https://minecraft.net/)
-will be supported later, same for [Bukkit](https://dev.bukkit.org/).
-
-To generate a distribution, install Mill first, then run `mill wildtp.assembly`.
-A distribution will be built in `out/wildtp/assembly/dest/out.jar`.
-
-Pre-built, slimmer releases will be made soon.
+Using this plugin requires the permission `WildernessTeleport.wild`.
