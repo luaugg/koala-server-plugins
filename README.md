@@ -1,45 +1,41 @@
-# WildernessTeleport
-[Minecraft](https://minecraft.net/) plugin,
-originally targeted to [PaperMC](https://papermc.io/) 1.16.1. It has one command - `/wild` -
-which teleports the player to a random location in any of the three dimensions.
+# Koala Server Plugins
+A collection of open-source, server-independent [Minecraft](https://minecraft.net/)
+plugins originally intended for a server I run. All of these plugins are documented,
+and will run on any supported Minecraft server.
 
-# Configuration and Documentation
-WildernessTeleport is highly configurable. Here are the configuration options with
-comments explaining what they do:
-```yaml
-# The minimum amount of time, in milliseconds, a player must wait in between command incovations.
-# Defaults to: 10 minutes.
-cooldownMillis: 600000
+All of them have been written with [PaperMC](https://papermc.io/) in mind,
+specifically version 1.16 — although older versions *should* work,
+and even non-Paper servers should too, as long as they run [Bukkit](https://dev.bukkit.org/).
 
-# The amount of time, in milliseconds, a player is invulnerable to all damage after teleporting.
-# Note that this value is doubled when teleporting through the Nether.
-# Defaults to: 10 seconds.
-invulnerabilityMillis: 10000
-
-# The maximum radius for teleports.
-# If the boundary is, say, 1000, X and Z co-ordinates will be limited to the range -1000 to +1000.
-# Defaults to: 29,999,984 (or 30,000,000 - 16).
-teleportBoundary: 29999984
-
-# Whether or not wilderness teleportation is allowed in the Overworld.
-# Defaults to: true.
-overworldTeleportAllowed: true
-
-# Whether or not wilderness teleportation is allowed in the Nether.
-# Defaults to: false.
-netherTeleportAllowed: false
-
-# Whether or not wilderness teleportation is allowed in The End.
-# Defaults to: false.
-endTeleportAllowed: false
-```
+# Documentation
+All the documentation you need for each plugin is included in its respective directory.
+I am open for contact should any extra information be required.
 
 # Development Details
-WildernessTeleport is written in [Scala](https://scala-lang.org) and uses the [Mill](https://github.com/lihaoyi/mill) build tool.
-It targets [PaperMC](https://papermc.io) 1.16.1. Older versions of [Minecraft](https://minecraft.net/)
-will be supported later, same for [Bukkit](https://dev.bukkit.org/).
+All the plugins collected here are written in [Scala](https://scala-lang.org/),
+using the [Mill](http://www.lihaoyi.com/mill/) build tool, and depend on
+Paper's API, which is nearly identical to the Bukkit API.
 
-To generate a distribution, install Mill first, then run `mill wildtp.assembly`.
-A distribution will be built in `out/wildtp/assembly/dest/out.jar`.
+In the future, the dependency will be Bukkit rather than Paper, as not all
+Java Edition servers run Paper, but almost all run Bukkit.
 
-Pre-built, slimmer releases will be made soon.
+Each directory is itself a Mill module, so to generate a distribution
+ready to be dropped into a server's plugin folder, follow these steps:
+* Install Mill.
+* Clone this repository.
+* Run `mill <module name>.assembly`.
+* Your assembly will be located in `out/<module namme>/assembly/dest`.
+* Copy it over to your Minecraft server's plugins folder.
+* Apply any optional configuration.
+* Restart/reload your server.
+* Done.
+
+If you wish to modify the actual source code, and you use [IntelliJ IDEA](https://www.jetbrains.com/idea/),
+you can also run `mill mill.scalalib.GenIdea/Idea`, which will provide Mill
+support within IntelliJ.
+
+Slimmer, pre-built releases will be made soon.
+
+# Licensing
+All the plugins collected here inherit licensing from upstream projects.
+As a result, they are licensed under GPL v3.
