@@ -17,10 +17,10 @@ class HomesPlugin extends JavaPlugin {
 
   var cooldownMap: mutable.Map[UUID, Long] = mutable.Map()
 
-  def cooldownMillis =        "cooldownMillis".resolveOptionalLong
-  def invulnerabilityMillis = "invulnerabilityMillis".resolveOptionalLong
+  def cooldownMillis =        "cooldownMillis".resolveOptionalInt
+  def invulnerabilityMillis = "invulnerabilityMillis".resolveOptionalInt
 
-  def maximumHomeCount =      "homes.maximumNumberOfHomes".resolveOptionalLong
+  def maximumHomeCount =      "homes.maximumNumberOfHomes".resolveOptionalInt
   def allowDeletingHomes =    "homes.allowDeletingHomes".resolveBoolean
   def allowOverridingHomes =  "homes.allowOverridingHomes".resolveBoolean
 
@@ -29,7 +29,7 @@ class HomesPlugin extends JavaPlugin {
   def allowEndHomes =         "homes.allowedLocations.endHomes".resolveBoolean
 
   def allowNamingHomes =      "homes.naming.allowNamingHomes".resolveBoolean
-  def homeNameCharLimit =     "homes.naming.homeNameCharLimit".resolveOptionalLong
+  def homeNameCharLimit =     "homes.naming.homeNameCharLimit".resolveOptionalInt
 
   override def onEnable(): Unit = {
     saveDefaultConfig()

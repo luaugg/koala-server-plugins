@@ -4,25 +4,28 @@ import org.bukkit.{ChatColor, Location}
 import org.bukkit.World.Environment
 import org.bukkit.command.{Command, CommandExecutor, CommandSender}
 import org.bukkit.entity.Player
-import wildtp.WildTp
+import wildtp.WildTpPlugin
 
 import scala.concurrent.duration.{MILLISECONDS => Milliseconds}
 import scala.util.{Random => random}
 
-case class WildExecutor(wildTpPlugin: WildTp) extends CommandExecutor {
+case class WildExecutor(plugin: WildTpPlugin) extends CommandExecutor {
   override def onCommand(sender: CommandSender, command: Command, label: String, args: Array[String]): Boolean = {
-    import wildTpPlugin._
+    import plugin._
+
     def millisecondsToFriendlyString(milliseconds: Long): String = milliseconds match {
       case _ if milliseconds < 60000 => f"${milliseconds / 1000f}%.2fs"
       case _ if milliseconds < 3600000 =>
         val minutes = Milliseconds.toMinutes(milliseconds)
         val seconds = Milliseconds.toSeconds(milliseconds) % 60
         s"$minutes:$seconds"
+
       case _ if milliseconds < 86400000 =>
         val hours = Milliseconds.toHours(milliseconds)
         val minutes = Milliseconds.toMinutes(milliseconds) % 60
         val seconds = Milliseconds.toSeconds(milliseconds) % 60
         s"$hours:$minutes:$seconds"
+
       case _ => "Over a day"
     }
 
@@ -38,12 +41,15 @@ case class WildExecutor(wildTpPlugin: WildTp) extends CommandExecutor {
       case Environment.NORMAL if !overworldTeleportAllowed =>
         player.sendMessage(s"${ChatColor.RED}[WildernessTeleport]: Overworld wilderness teleportation has been disabled.")
         return false
+
       case Environment.NETHER if !netherTeleportAllowed =>
         player.sendMessage(s"${ChatColor.RED}[WildernessTeleport]: Nether wilderness teleportation has been disabled.")
         return false
+
       case Environment.THE_END if !endTeleportAllowed =>
         player.sendMessage(s"${ChatColor.RED}[WildernessTeleport]: End wilderness teleportation has been disabled.")
         return false
+
       case _ =>
     }
 
@@ -99,11 +105,13 @@ case class WildExecutor(wildTpPlugin: WildTp) extends CommandExecutor {
       cooldownMap.put(player.getUniqueId, System.currentTimeMillis())
       invulnerabilityMillis match {
         case Some(value) =>
-          val invulnerabilitySpan = if (environment == Environment.NETHER) {
-            value * 2 // More leeway for falling in lava.
-          } else {
-            value
-          }
+          val invulnerabilitySpan =
+            if (environment == Environment.NETHER) {
+              value * 2
+            } else {
+              value
+            }
+
           val friendlyInvulnerabilitySpan = millisecondsToFriendlyString(invulnerabilitySpan)
           player.sendMessage(s"${ChatColor.GOLD}[WildernessTeleport]: Succesfully teleported. You're invincible for $friendlyInvulnerabilitySpan.")
 

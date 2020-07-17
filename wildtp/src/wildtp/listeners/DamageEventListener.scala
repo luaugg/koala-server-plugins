@@ -4,22 +4,23 @@ import org.bukkit.World.Environment
 import org.bukkit.entity.EntityType
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.{EventHandler, Listener}
-import wildtp.WildTp
+import wildtp.WildTpPlugin
 
 // This handles player invulnerability shortly after teleporting.
-case class DamageEventListener(wildTpPlugin: WildTp) extends Listener {
-  import wildTpPlugin.{cooldownMap, invulnerabilityMillis}
+case class DamageEventListener(plugin: WildTpPlugin) extends Listener {
+  import plugin.{cooldownMap, invulnerabilityMillis}
 
   @EventHandler
   def onDamage(event: EntityDamageEvent): Unit = event match {
     case _ if event.getEntityType != EntityType.PLAYER =>
     case _ => invulnerabilityMillis match {
       case Some(value) =>
-        val invulnerabilitySpan = if (event.getEntity.getWorld.getEnvironment == Environment.NETHER) {
-          value * 2
-        } else {
-          value
-        }
+        val invulnerabilitySpan =
+          if (event.getEntity.getWorld.getEnvironment == Environment.NETHER) {
+            value * 2
+          } else {
+            value
+          }
 
         cooldownMap.get(event.getEntity.getUniqueId) match {
           case Some(timestamp) if System.currentTimeMillis() - timestamp < invulnerabilitySpan =>

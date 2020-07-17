@@ -21,17 +21,18 @@ invulnerabilityMillis: 10000
 # Defaults to: 29,999,984 (or 30,000,000 - 16).
 teleportBoundary: 29999984
 
-# Whether or not wilderness teleportation is allowed in the Overworld.
-# Defaults to: true.
-overworldTeleportAllowed: true
+locations:
+  # Whether or not wilderness teleportation is allowed in the Overworld.
+  # Defaults to: true.
+  overworldTeleportAllowed: true
 
-# Whether or not wilderness teleportation is allowed in the Nether.
-# Defaults to: false.
-netherTeleportAllowed: false
+  # Whether or not wilderness teleportation is allowed in the Nether.
+  # Defaults to: false.
+  netherTeleportAllowed: false
 
-# Whether or not wilderness teleportation is allowed in The End.
-# Defaults to: false.
-endTeleportAllowed: false
+  # Whether or not wilderness teleportation is allowed in The End.
+  # Defaults to: false.
+  endTeleportAllowed: false
 ```
 
 Using this plugin requires the permission `WildernessTeleport.wild`.

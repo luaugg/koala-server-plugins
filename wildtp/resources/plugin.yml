@@ -1,6 +1,6 @@
 name: WildernessTeleport
-main: wildtp.WildTp
-version: 1.0.0
+main: wildtp.WildTpPlugin
+version: 2.0.0
 api-version: "1.16"
 author: SamOphis
 commands:
@@ -8,4 +8,4 @@ commands:
     description: Teleports you to a random location in the wilderness.
     usage: /wild
     permission: WildernessTeleport.wild
-    permission-message: You don't have <permission>, which is needed to use this command.
+    permission-message: You don't have the <permission> permission, which is needed to use this command.

@@ -1,6 +1,8 @@
 cooldownMillis: 600000
 invulnerabilityMillis: 10000
 teleportBoundary: 29999984
-overworldTeleportAllowed: true
-netherTeleportAllowed: false
-endTeleportAllowed: false
+
+locations:
+  overworldTeleportAllowed: true
+  netherTeleportAllowed: false
+  endTeleportAllowed: false
