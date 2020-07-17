@@ -1,5 +1,5 @@
 name: Homes
-main: homes.Home
+main: homes.Homes
 version: 1.0.0
 api-version: "1.16"
 author: SamOphis
