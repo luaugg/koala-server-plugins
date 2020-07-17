@@ -1,5 +1,0 @@
-package homes
-
-class Homes {
-
-}
