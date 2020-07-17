@@ -31,6 +31,8 @@ class HomesPlugin extends JavaPlugin {
   def homeNameCharLimit: Option[Long] = "homes.naming.homeNameCharLimit".resolveOptionalLong
 
   override def onEnable(): Unit = {
+    saveDefaultConfig()
+
     // Setup database stuff.
     val availableProcessors = math.max(2, sys.runtime.availableProcessors)
     val backingThreadPool = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(availableProcessors))
