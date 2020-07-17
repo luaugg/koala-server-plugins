@@ -1,0 +1,16 @@
+cooldownMillis: 10000
+invulnerabilityMillis: 5000
+
+homes:
+  maximumNumberOfHomes: 3
+  allowDeletingHomes: true
+  allowOverridingHomes: true
+
+  allowedLocations:
+    overworldHomes: true
+    netherHomes: false
+    endHomes: false
+
+  naming:
+    allowNamingHomes: true
+    homeNameCharLimit: 20

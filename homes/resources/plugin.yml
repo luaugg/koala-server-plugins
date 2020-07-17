@@ -1,0 +1,23 @@
+name: Homes
+main: homes.Home
+version: 1.0.0
+api-version: "1.16"
+author: SamOphis
+commands:
+  home:
+    description: Teleports you back to one of your homes. Defaults to home number one.
+    usage: /home [home identifier]
+    permission: Homes.home
+    permission-message: You don't have the <permission> permission, which is needed to use this command.
+
+  sethome:
+    description: Sets the location of one of your homes. Defaults to home number one.
+    usage: /sethome [home identifier]
+    permission: Homes.sethome
+    permission-message: You don't have the <permission> permission, which is needed to use this command.
+
+  deletehome:
+    description: Deletes one or more of your homes. Defaults to home number one.
+    usage: /deletehome [space-separated list of home identifiers]
+    permission: Homes.deletehome
+    permission-message: You don't have the <permission> permission, which is needed to use this command.
