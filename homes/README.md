@@ -47,7 +47,8 @@ homes:
     # Defaults to: true.
     allowNamingHomes: true
 
-    # The maximum amount of characters a home's name can have.
+    # The maximum amount of characters a home's name can have, if naming homes is enabled.
+    # Defaults to: 20.
     homeNameCharLimit: 20
 ```
 
