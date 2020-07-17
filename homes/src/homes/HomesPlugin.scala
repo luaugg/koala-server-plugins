@@ -6,26 +6,29 @@ import java.util.concurrent.Executors
 import cats.effect._
 import doobie._
 import doobie.hikari._
+import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 
 import scala.collection.mutable
 import scala.concurrent.ExecutionContext
 
 class HomesPlugin extends JavaPlugin {
+  import utils.config._
+
   var cooldownMap: mutable.Map[UUID, Long] = mutable.Map()
-  var cooldownMillis: Option[Long] = _
-  var invulnerabilityMillis: Option[Long] = _
+  def cooldownMillis: Option[Long] = "cooldownMillis".resolveOptionalLong
+  def invulnerabilityMillis: Option[Long] = "invulnerabilityMillis".resolveOptionalLong
 
-  var maximumHomeCount: Option[Int] = _
-  var allowDeletingHomes: Boolean = _
-  var allowOverridingHomes: Boolean = _
+  def maximumHomeCount: Option[Long] = "homes.maximumNumberOfHomes".resolveOptionalLong
+  def allowDeletingHomes: Boolean = "homes.allowDeletingHomes".resolveBoolean
+  def allowOverridingHomes: Boolean = "homes.allowOverridingHomes".resolveBoolean
 
-  var allowOverworldHomes: Boolean = _
-  var allowNetherHomes: Boolean = _
-  var allowEndHomes: Boolean = _
+  def allowOverworldHomes: Boolean = "homes.allowedLocations.overworldHomes".resolveBoolean
+  def allowNetherHomes: Boolean = "homes.allowedLocations.netherHomes".resolveBoolean
+  def allowEndHomes: Boolean = "homes.allowedLocations.endHomes".resolveBoolean
 
-  var allowNamingHomes: Boolean = _
-  var homeNameCharLimit: Option[Int] = _
+  def allowNamingHomes: Boolean = "homes.naming.allowNamingHomes".resolveBoolean
+  def homeNameCharLimit: Option[Long] = "homes.naming.homeNameCharLimit".resolveOptionalLong
 
   override def onEnable(): Unit = {
     // Setup database stuff.
@@ -47,4 +50,6 @@ class HomesPlugin extends JavaPlugin {
         )
       } yield hikariTransactor
   }
+
+  private implicit def config: FileConfiguration = getConfig
 }
