@@ -6,6 +6,7 @@ import java.util.concurrent.Executors
 import cats.effect._
 import doobie._
 import doobie.hikari._
+import homes.executors.{DeleteHomeExecutor, HomeExecutor, SetHomeExecutor}
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -31,6 +32,8 @@ class HomesPlugin extends JavaPlugin {
   def allowNamingHomes =      "homes.naming.allowNamingHomes".resolveBoolean
   def homeNameCharLimit =     "homes.naming.homeNameCharLimit".resolveOptionalInt
 
+  override def onDisable(): Unit = cooldownMap.clear()
+
   override def onEnable(): Unit = {
     saveDefaultConfig()
 
@@ -52,6 +55,15 @@ class HomesPlugin extends JavaPlugin {
           blockingContext
         )
       } yield hikariTransactor
+
+    databaseTransactorResource.use { transactor =>
+      // This is fairly dumb. Will rewrite later.
+      IO(() => {
+        getCommand("home").setExecutor(HomeExecutor(this, transactor))
+        getCommand("sethome").setExecutor(SetHomeExecutor(this, transactor))
+        getCommand("deletehome").setExecutor(DeleteHomeExecutor(this, transactor))
+      })
+    }
   }
 
   private implicit def config: FileConfiguration = getConfig
