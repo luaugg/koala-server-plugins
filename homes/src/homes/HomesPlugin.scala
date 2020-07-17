@@ -16,19 +16,20 @@ class HomesPlugin extends JavaPlugin {
   import utils.config._
 
   var cooldownMap: mutable.Map[UUID, Long] = mutable.Map()
-  def cooldownMillis: Option[Long] = "cooldownMillis".resolveOptionalLong
-  def invulnerabilityMillis: Option[Long] = "invulnerabilityMillis".resolveOptionalLong
 
-  def maximumHomeCount: Option[Long] = "homes.maximumNumberOfHomes".resolveOptionalLong
-  def allowDeletingHomes: Boolean = "homes.allowDeletingHomes".resolveBoolean
-  def allowOverridingHomes: Boolean = "homes.allowOverridingHomes".resolveBoolean
+  def cooldownMillis =        "cooldownMillis".resolveOptionalLong
+  def invulnerabilityMillis = "invulnerabilityMillis".resolveOptionalLong
 
-  def allowOverworldHomes: Boolean = "homes.allowedLocations.overworldHomes".resolveBoolean
-  def allowNetherHomes: Boolean = "homes.allowedLocations.netherHomes".resolveBoolean
-  def allowEndHomes: Boolean = "homes.allowedLocations.endHomes".resolveBoolean
+  def maximumHomeCount =      "homes.maximumNumberOfHomes".resolveOptionalLong
+  def allowDeletingHomes =    "homes.allowDeletingHomes".resolveBoolean
+  def allowOverridingHomes =  "homes.allowOverridingHomes".resolveBoolean
 
-  def allowNamingHomes: Boolean = "homes.naming.allowNamingHomes".resolveBoolean
-  def homeNameCharLimit: Option[Long] = "homes.naming.homeNameCharLimit".resolveOptionalLong
+  def allowOverworldHomes =   "homes.allowedLocations.overworldHomes".resolveBoolean
+  def allowNetherHomes =      "homes.allowedLocations.netherHomes".resolveBoolean
+  def allowEndHomes =         "homes.allowedLocations.endHomes".resolveBoolean
+
+  def allowNamingHomes =      "homes.naming.allowNamingHomes".resolveBoolean
+  def homeNameCharLimit =     "homes.naming.homeNameCharLimit".resolveOptionalLong
 
   override def onEnable(): Unit = {
     saveDefaultConfig()
