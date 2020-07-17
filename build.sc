@@ -1,7 +1,7 @@
 import mill._, scalalib._
 import coursier.maven.MavenRepository
 
-object wildtp extends ScalaModule {
+trait CommonModule extends ScalaModule {
   def scalaVersion = "2.13.1"
 
   override def ivyDeps = Agg(
@@ -12,3 +12,7 @@ object wildtp extends ScalaModule {
     MavenRepository("https://papermc.io/repo/repository/maven-public/")
   )
 }
+
+object wildtp extends CommonModule
+
+object homes extends CommonModule
