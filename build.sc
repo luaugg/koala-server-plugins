@@ -19,6 +19,7 @@ object homes extends CommonModule {
   // Consider changing project structure to inherit Paper API more conveniently.
   override def ivyDeps = Agg(
     ivy"com.destroystokyo.paper:paper-api:1.16.1-R0.1-SNAPSHOT",
-    ivy"org.tpolecat:doobie-h2:0.9.0"
+    ivy"org.tpolecat::doobie-h2:0.9.0",
+    ivy"org.tpolecat::doobie-hikari:0.9.0"
   )
 }
