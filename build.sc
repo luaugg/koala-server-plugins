@@ -13,9 +13,15 @@ trait CommonModule extends ScalaModule {
   )
 }
 
-object wildtp extends CommonModule
+object utils extends CommonModule
+
+object wildtp extends CommonModule {
+  override def moduleDeps = Seq(utils)
+}
 
 object homes extends CommonModule {
+  override def moduleDeps = Seq(utils)
+
   // Consider changing project structure to inherit Paper API more conveniently.
   override def ivyDeps = Agg(
     ivy"com.destroystokyo.paper:paper-api:1.16.1-R0.1-SNAPSHOT",
